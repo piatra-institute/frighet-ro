@@ -1,8 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import "./globals.css";
 
 
+
+const GTAG = process.env.NEXT_PUBLIC_GTAG;
 
 const poppins = Poppins({
     subsets: ["latin", "latin-ext"],
@@ -96,6 +99,10 @@ export default function RootLayout({
             >
                 {children}
             </body>
+
+            {GTAG && (
+                <GoogleAnalytics gaId={GTAG} />
+            )}
         </html>
     );
 }
